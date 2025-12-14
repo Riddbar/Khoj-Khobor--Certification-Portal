@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Certificate Status</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 35px 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            background: #ffcc00;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+            background: #ffd633;
+        }
+
+        .msg {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>Check Certificate Status</h2>
+        <p>Enter your Roll Number below</p>
+
+        <!-- form use kiya hai taaki Enter key se submit ho -->
+        <form onsubmit="checkRoll(event)">
+            <input type="text" id="roll" placeholder="Roll Number" required>
+            <button type="submit">Check Status</button>
+        </form>
+
+        <div class="msg" id="message"></div>
+    </div>
+
+    <script>
+        function checkRoll(event) {
+            event.preventDefault(); // page reload rokta hai
+
+            const roll = document.getElementById("roll").value.trim();
+            const msg = document.getElementById("message");
+
+            // TEMP data (abhi testing ke liye)
+            const passedRolls = ["101", "123", "555"];
+
+            if (passedRolls.includes(roll)) {
+                msg.style.color = "#00ff99";
+                msg.innerText = "Exam completed. Redirecting to certificate...";
+
+                // thoda delay ke baad certificate page
+                setTimeout(() => {
+                    window.location.href = "certificate.html?roll=" + roll;
+                }, 1500);
+            } else {
+                msg.style.color = "#ff8080";
+                msg.innerText = "Exam not completed or invalid roll number.";
+            }
+        }
+    </script>
+
+</body>
+</html>

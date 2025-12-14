@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journalism Certification Portal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.35);
+            padding: 40px 30px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #ffdd57;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            background: #ffdd57;
+            color: #000;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: #ffe680;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+
+        /* Credits button */
+        .credits-btn{
+            position:fixed;
+            right:15px;
+            bottom:15px;
+            background:#ffcc00;
+            color:#000;
+            padding:8px 14px;
+            border-radius:20px;
+            font-size:13px;
+            cursor:pointer;
+            box-shadow:0 4px 10px rgba(0,0,0,0.4);
+            z-index:999;
+        }
+
+        .credits-box{
+            display:none;
+            position:fixed;
+            right:20px;
+            bottom:60px;
+            background:#000;
+            color:#fff;
+            padding:15px 18px;
+            border-radius:12px;
+            text-align:center;
+            font-size:14px;
+            box-shadow:0 6px 15px rgba(0,0,0,0.6);
+            z-index:1000;
+        }
+
+        .credits-box button{
+            margin-top:10px;
+            padding:6px 12px;
+            border:none;
+            border-radius:12px;
+            cursor:pointer;
+            background:#ffdd57;
+            color:#000;
+            font-size:13px;
+        }
+
+        .credits-box button:hover{
+            background:#ffe680;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Journalism Certification Portal</h1>
+
+        <p>
+            As per the <span class="highlight">new college rule</span>, all students must
+            complete the Journalism course and appear in the final examination
+            before completing their college.
+        </p>
+
+        <p>
+            After successful completion, students will receive an
+            <span class="highlight">official course completion certificate</span>.
+        </p>
+
+        <p>
+            Teachers can log in to manage student records, and students can
+            verify their exam status and download certificates.
+        </p>
+
+        <button onclick="window.location.href='role.html'">Continue</button>
+
+        <footer>
+            © Journalism Course Committee
+        </footer>
+    </div>
+
+    <!-- Credits Button -->
+    <div class="credits-btn" onclick="showCredits()">Credits</div>
+
+    <!-- Credits Popup -->
+    <div class="credits-box" id="creditsBox">
+        <p>Website created by<br><b>Riddhi Barua</b></p>
+        <button onclick="closeCredits()">Close</button>
+    </div>
+
+    <script>
+        function showCredits(){
+            document.getElementById('creditsBox').style.display = 'block';
+        }
+
+        function closeCredits(){
+            document.getElementById('creditsBox').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
