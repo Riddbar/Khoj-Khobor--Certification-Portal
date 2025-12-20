@@ -7,15 +7,65 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
-body{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#000428,#004e92);color:white;}
-.login-box{background:rgba(0,0,0,0.45);padding:40px 30px;border-radius:16px;width:90%;max-width:400px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,0.5);}
-h2{margin-bottom:25px;font-size:24px;color:#ffdd57;}
-input,button{width:100%;padding:12px 15px;margin:10px 0;border-radius:8px;border:none;font-size:16px;}
-button{cursor:pointer;background:#ffdd57;color:#000;transition:0.3s;border-radius:25px;}
-button:hover{background:#ffe680;transform:scale(1.03);}
-.msg{margin-top:15px;font-size:14px;}
-.success-box{display:none;background:#00ff99;color:#000;padding:20px;border-radius:12px;margin-top:20px;}
-.error-box{display:none;background:#ff8080;color:#000;padding:20px;border-radius:12px;margin-top:20px;}
+body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#000428,#004e92);
+    color:white;
+}
+.login-box{
+    background:rgba(0,0,0,0.45);
+    padding:40px 30px;
+    border-radius:16px;
+    width:90%;
+    max-width:400px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.5);
+}
+h2{
+    margin-bottom:25px;
+    font-size:24px;
+    color:#ffdd57;
+}
+input,button{
+    width:100%;
+    padding:12px 15px;
+    margin:10px 0;
+    border-radius:8px;
+    border:none;
+    font-size:16px;
+}
+button{
+    cursor:pointer;
+    background:#ffdd57;
+    color:#000;
+    transition:0.3s;
+    border-radius:25px;
+}
+button:hover{
+    background:#ffe680;
+    transform:scale(1.03);
+}
+.success-box{
+    display:none;
+    background:#00ff99;
+    color:#000;
+    padding:20px;
+    border-radius:12px;
+    margin-top:20px;
+    text-align:center;
+}
+.error-box{
+    display:none;
+    background:#ff8080;
+    color:#000;
+    padding:20px;
+    border-radius:12px;
+    margin-top:20px;
+    text-align:center;
+}
 </style>
 </head>
 
@@ -26,16 +76,15 @@ button:hover{background:#ffe680;transform:scale(1.03);}
     <input type="text" id="user" placeholder="Username">
     <input type="password" id="pass" placeholder="Password">
     <button onclick="login()">Login</button>
-    <div class="msg" id="msg"></div>
 </div>
 
 <div class="success-box" id="successBox">
-    Login Successful! ✅<br><br>
+    Login Successful ✅<br><br>
     <button onclick="goNext()">Next</button>
 </div>
 
 <div class="error-box" id="errorBox">
-    Invalid username or password! ❌<br><br>
+    Invalid username or password ❌<br><br>
     <button onclick="tryAgain()">Try Again</button>
 </div>
 
@@ -43,11 +92,9 @@ button:hover{background:#ffe680;transform:scale(1.03);}
 function login(){
     const username = document.getElementById("user").value.trim();
     const password = document.getElementById("pass").value.trim();
-    
-    const storedUser = localStorage.getItem("teacherUser");
-    const storedPass = localStorage.getItem("teacherPass");
 
-    if(username === storedUser && password === storedPass){
+    // 🔐 SINGLE TEACHER ACCOUNT
+    if(username === "Teacher" && password === "Jrn@l!sm_2025"){
         document.getElementById("loginBox").style.display="none";
         document.getElementById("successBox").style.display="block";
     } else {
