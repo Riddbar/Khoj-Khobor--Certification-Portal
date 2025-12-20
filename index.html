@@ -70,6 +70,7 @@
             opacity: 0.85;
         }
 
+        /* Credits */
         .credits-btn{
             position:fixed;
             right:15px;
@@ -100,22 +101,8 @@
             width:240px;
         }
 
-        .credits-box b{
-            cursor:pointer;
-            color:#ffdd57;
-        }
-
-        .credits-box input{
-            width:100%;
-            padding:7px;
-            margin:6px 0;
-            border-radius:6px;
-            border:none;
-            font-size:13px;
-        }
-
         .credits-box button{
-            margin-top:8px;
+            margin-top:10px;
             padding:6px 12px;
             border:none;
             border-radius:12px;
@@ -125,9 +112,8 @@
             font-size:13px;
         }
 
-        .secret-msg{
-            font-size:12px;
-            margin-top:6px;
+        .credits-box button:hover{
+            background:#ffe680;
         }
     </style>
 </head>
@@ -157,21 +143,14 @@
     <footer>© Journalism Course Committee</footer>
 </div>
 
+<!-- Credits -->
 <div class="credits-btn" onclick="showCredits()">Credits</div>
 
 <div class="credits-box" id="creditsBox">
     <p>
         Website created by<br>
-        <b onclick="openSecretLogin()">Riddhi Barua</b>
+        <b style="color:#ffdd57;">Riddhi Barua</b>
     </p>
-
-    <div id="secretLogin" style="display:none;margin-top:10px;">
-        <input type="text" id="secretUser" placeholder="Username">
-        <input type="password" id="secretPass" placeholder="Password">
-        <button onclick="checkSecret()">Enter</button>
-        <div class="secret-msg" id="secretMsg"></div>
-    </div>
-
     <button onclick="closeCredits()">Close</button>
 </div>
 
@@ -182,32 +161,8 @@ function showCredits(){
 
 function closeCredits(){
     document.getElementById('creditsBox').style.display = 'none';
-    document.getElementById('secretLogin').style.display = 'none';
-    document.getElementById('secretMsg').innerText = "";
-}
-
-function openSecretLogin(){
-    document.getElementById('secretLogin').style.display = 'block';
-}
-
-function checkSecret(){
-    const u = document.getElementById("secretUser").value.trim();
-    const p = document.getElementById("secretPass").value.trim();
-    const msg = document.getElementById("secretMsg");
-
-    if(u === "Riddhi Barua" && p === "BravoPuchku"){
-        msg.style.color = "#00ff99";
-        msg.innerText = "Access granted...";
-        setTimeout(() => {
-            window.location.href = "OwnerOrCreator.html";
-        }, 1000);
-    } else {
-        msg.style.color = "#ff8080";
-        msg.innerText = "Wrong username or password";
-    }
 }
 </script>
 
 </body>
 </html>
-
