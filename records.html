@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Records</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+}
+.panel{
+    background:rgba(0,0,0,0.45);
+    padding:30px 25px;
+    border-radius:16px;
+    width:95%;
+    max-width:520px;
+}
+h2{
+    text-align:center;
+    color:#ffdd57;
+    margin-bottom:20px;
+}
+.student{
+    background:#000;
+    padding:10px 12px;
+    border-radius:8px;
+    margin-bottom:8px;
+    font-size:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.del{
+    cursor:pointer;
+    color:#ff8080;
+    font-size:16px;
+}
+.del:hover{
+    color:#ff3333;
+}
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border-radius:25px;
+    border:none;
+    font-size:15px;
+    cursor:pointer;
+    background:#ffdd57;
+    color:#000;
+}
+button:hover{
+    background:#ffe680;
+}
+.clear{
+    background:#ff8080;
+}
+.clear:hover{
+    background:#ff9999;
+}
+.empty{
+    text-align:center;
+    font-size:14px;
+    opacity:0.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+    <h2>Exam Completed Students</h2>
+
+    <div id="list"></div>
+
+    <button onclick="goBack()">⬅ Back to Admin Panel</button>
+    <button class="clear" onclick="clearAll()">Clear All Records</button>
+</div>
+
+<script>
+let records = JSON.parse(localStorage.getItem("examRecords")) || [];
+
+function save(){
+    localStorage.setItem("examRecords", JSON.stringify(records));
+}
+
+function render(){
+    const list = document.getElementById("list");
+    list.innerHTML = "";
+
+    if(records.length === 0){
+        list.innerHTML = `<div class="empty">No records found</div>`;
+        return;
+    }
+
+    records.forEach((s, i) => {
+        const div = document.createElement("div");
+        div.className = "student";
+        div.innerHTML = `
+            <span>${s.roll} - ${s.name}</span>
+            <span class="del" onclick="removeRecord(${i})">✖</span>
+        `;
+        list.appendChild(div);
+    });
+}
+
+function removeRecord(index){
+    if(confirm("Delete this record?")){
+        records.splice(index,1);
+        save();
+        render();
+    }
+}
+
+function clearAll(){
+    if(confirm("Are you sure you want to delete ALL records?")){
+        records = [];
+        save();
+        render();
+    }
+}
+
+function goBack(){
+    window.location.href = "admin-panel.html";
+}
+
+render();
+</script>
+
+</body>
+</html>
