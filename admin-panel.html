@@ -74,12 +74,22 @@ button:hover{
     <div class="msg" id="msg"></div>
 </div>
 
-<script>
-let records = JSON.parse(localStorage.getItem("examRecords")) || [];
+<!-- 🔥 FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
-function save(){
-    localStorage.setItem("examRecords", JSON.stringify(records));
-}
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAFtirzzQXSbG_z4kZk_hsZrMBUKWVOGkw",
+  authDomain: "journalism-web.firebaseapp.com",
+  projectId: "journalism-web",
+  storageBucket: "journalism-web.firebasestorage.app",
+  messagingSenderId: "814051056160",
+  appId: "1:814051056160:web:2d21e6beb3de5920faba45"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
 function addStudent(){
     const roll = document.getElementById("roll").value.trim();
@@ -92,14 +102,21 @@ function addStudent(){
         return;
     }
 
-    records.push({ roll, name });
-    save();
-
-    msg.style.color = "#00ff99";
-    msg.innerText = "Record saved successfully ✅";
-
-    document.getElementById("roll").value = "";
-    document.getElementById("name").value = "";
+    db.collection("examRecords").add({
+        roll: roll,
+        name: name,
+        time: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => {
+        msg.style.color = "#00ff99";
+        msg.innerText = "Record saved to Firebase ✅";
+        document.getElementById("roll").value = "";
+        document.getElementById("name").value = "";
+    })
+    .catch((error) => {
+        msg.style.color = "#ff8080";
+        msg.innerText = "Error: " + error.message;
+    });
 }
 
 function goRecords(){
